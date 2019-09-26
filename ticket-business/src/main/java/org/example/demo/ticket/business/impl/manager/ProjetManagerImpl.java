@@ -32,8 +32,6 @@ public class ProjetManagerImpl extends AbstractManager implements ProjetManager 
      */
     @Override
 	public Projet getProjet(Integer pId) throws NotFoundException {
-        // Je n'ai pas encore codé la DAO
-        // Je mets juste un code temporaire pour commencer le cours...
         if (pId < 1) {
             throw new NotFoundException("Projet non trouvé : ID=" + pId);
         } else {
@@ -52,12 +50,11 @@ public class ProjetManagerImpl extends AbstractManager implements ProjetManager 
      */
     @Override
 	public List<Projet> getListProjet() {
-        // Je n'ai pas encore codé la DAO
-        // Je mets juste un code temporaire pour commencer le cours...
+    	List<Projet> vListDao = getDaoFactory().getProjetDao().getProjetList();
         List<Projet> vList = new ArrayList<>();
-        for (int vI = 0; vI < 9; vI++) {
-            Projet vProjet = new Projet(vI);
-            vProjet.setNom("Projet n°" + vI);
+        for (Projet vProjet: vListDao) {
+            Utilisateur vUtilisateur = getDaoFactory().getUtilisateurDao().getUtilisateur(vProjet.getId());
+            vProjet.setResponsable(vUtilisateur);
             vList.add(vProjet);
         }
         return vList;
