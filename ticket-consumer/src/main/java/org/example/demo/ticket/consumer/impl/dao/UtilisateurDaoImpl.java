@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.example.demo.ticket.consumer.contract.dao.UtilisateurDao;
 import org.example.demo.ticket.consumer.impl.rowmapper.UtilisateurRowMapper;
-import org.example.demo.ticket.model.bean.projet.Projet;
 import org.example.demo.ticket.model.bean.utilisateur.Utilisateur;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
