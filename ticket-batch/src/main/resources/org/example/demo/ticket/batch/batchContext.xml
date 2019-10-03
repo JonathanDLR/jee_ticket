@@ -5,37 +5,32 @@
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="projetManager" class="org.example.demo.ticket.business.impl.manager.ProjetManagerImpl" />
-	<bean id="ticketManager" class="org.example.demo.ticket.business.impl.manager.TicketManagerImpl" />
 	
-	<bean id="managerFactory" class="org.example.demo.ticket.business.impl.manager.ManagerFactoryImpl">
-		<property name="projetManager" ref="projetManager" />
-		<property name="ticketManager" ref="ticketManager" />
-	</bean>
 	
-	<bean id="dataSourceTicketConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="location" value="file:${TICKET_HOME}/conf/db-ticket.properties" />
-	</bean>
+	 <!-- Chargement du fichier properties contenant
+        la configuration de la datasource vers DB_TICKET  -->
+    <bean id="dataSourceTicketConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="file:${application.home}/conf/db-ticket.properties"/>
+    </bean>
 
-	<bean id="dataSourceTicket"
-		  class="org.apache.commons.dbcp2.BasicDataSourceFactory"
-		  factory-method="createDataSource"
-		  destroy-method="close">
-		<constructor-arg ref="dataSourceTicketConfiguration" />	  
-	</bean>
+    <!-- Création de la datasource "dataSourceTicket" -->
+    <bean id="dataSourceTicket"
+          class="org.apache.commons.dbcp2.BasicDataSourceFactory"
+          factory-method="createDataSource"
+          destroy-method="close">
+        <constructor-arg ref="dataSourceTicketConfiguration"/>
+    </bean>
 	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
-			<list>
-				<value>file:${TICKET_HOME}/conf/config.properties</value>
-			</list>
+			<value>file:${TICKET_HOME}/conf/config.properties</value>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="false" />
 	</bean>
-	<!-- 
-	<bean id="exportTicketPath" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="path" value="${config.exportpath}" />
+	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="org.example.demo.ticket.batch.Main.setPath" />
+		<property name="arguments" value="${exportpath}" />
 	</bean>
-	 -->
 	
 </beans>

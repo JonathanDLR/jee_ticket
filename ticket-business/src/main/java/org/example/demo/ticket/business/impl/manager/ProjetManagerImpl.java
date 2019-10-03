@@ -11,8 +11,6 @@ import org.example.demo.ticket.model.bean.projet.Projet;
 import org.example.demo.ticket.model.bean.projet.Version;
 import org.example.demo.ticket.model.bean.utilisateur.Utilisateur;
 import org.example.demo.ticket.model.exception.NotFoundException;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;

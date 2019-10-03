@@ -5,11 +5,27 @@
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd">
             
-	<bean id="projetDao" class="org.example.demo.ticket.consumer.impl.dao.ProjetDaoImpl" />  
-	<bean id="ticketDao" class="org.example.demo.ticket.consumer.impl.dao.TicketDaoImpl" /> 
+    <bean id="abstractDao" class="org.example.demo.ticket.consumer.impl.dao.AbstractDaoImpl">
+		<property name="dataSource" ref="dataSourceTicket" />
+	</bean> 
+            
+	<bean id="projetDao" class="org.example.demo.ticket.consumer.impl.dao.ProjetDaoImpl">
+		<property name="dataSource" ref="dataSourceTicket" />
+	</bean>  
+	<bean id="ticketDao" class="org.example.demo.ticket.consumer.impl.dao.TicketDaoImpl">
+		<property name="dataSource" ref="dataSourceTicket" /> 
+	</bean>
+	<bean id="ticketStatutDao" class="org.example.demo.ticket.consumer.impl.dao.TicketStatutDaoImpl">
+		<property name="dataSource" ref="dataSourceTicket" /> 
+	</bean>
+	<bean id="utilisateurDao" class="org.example.demo.ticket.consumer.impl.dao.UtilisateurDaoImpl">
+		<property name="dataSource" ref="dataSourceTicket" /> 
+	</bean>
 	
-	<bean id="daoFactory" class="org.example.demo.ticket.consumer.impl.dao.DaoFactory">
+	<bean id="daoFactory" class="org.example.demo.ticket.consumer.impl.dao.DaoFactoryImpl">
 		<property name="projetDao" ref="projetDao" />
 		<property name="ticketDao" ref="ticketDao" />
+		<property name="ticketStatutDao" ref="ticketStatutDao" />
+		<property name="utilisateurDao" ref="utilisateurDao" />
 	</bean> 
 </beans>     

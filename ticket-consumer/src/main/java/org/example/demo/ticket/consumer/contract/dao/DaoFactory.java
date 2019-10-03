@@ -9,6 +9,10 @@ public interface DaoFactory {
 	
 	void setTicketDao(TicketDao pTicketDao);
 	
+	TicketStatutDao getTicketStatutDao();
+	
+	void setTicketStatutDao(TicketStatutDao pTicketStatutDao);
+	
 	UtilisateurDao getUtilisateurDao();
 	
 	void setUtilisateurDao(UtilisateurDao pUtilisateurDao);

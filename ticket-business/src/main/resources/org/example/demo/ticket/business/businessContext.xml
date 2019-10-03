@@ -11,21 +11,16 @@
 	<bean id="ticketManager" class="org.example.demo.ticket.business.impl.manager.TicketManagerImpl">
 		<property name="daoFactory" ref="daoFactory" />
 	</bean>
+	<bean id="ticketStatutManager" class="org.example.demo.ticket.business.impl.manager.TicketStatutManagerImpl">
+		<property name="daoFactory" ref="daoFactory" />
+	</bean>
 	
 	<bean id="managerFactory" class="org.example.demo.ticket.business.impl.manager.ManagerFactoryImpl">
 		<property name="projetManager" ref="projetManager" />
 		<property name="ticketManager" ref="ticketManager" />
+		<property name="ticketStatutManager" ref="ticketStatutManager" />
 	</bean>
 	
-	<bean id="projetDao" class="org.example.demo.ticket.consumer.impl.dao.ProjetDaoImpl" />
-	<bean id="ticketDao" class="org.example.demo.ticket.consumer.impl.dao.TicketDaoImpl" />
-	<bean id="utilisateurDao" class="org.example.demo.ticket.consumer.impl.dao.UtilisateurDaoImpl" />
-	
-	<bean id="daoFactory" class="org.example.demo.ticket.consumer.impl.dao.DaoFactoryImpl">
-		<property name="projetDao" ref="projetDao" />
-		<property name="ticketDao" ref="ticketDao" />
-		<property name="utilisateurDao" ref="utilisateurDao" />
-	</bean>
 		
 	<bean id="txManagerTicket" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSourceTicket" />

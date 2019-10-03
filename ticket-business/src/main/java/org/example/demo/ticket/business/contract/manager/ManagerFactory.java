@@ -8,4 +8,8 @@ public interface ManagerFactory {
 	TicketManager getTicketManager();
 	
 	void setTicketManager(TicketManager pTicketManager);
+	
+	TicketStatutManager getTicketStatutManager();
+	
+	void setTicketStatutManager(TicketStatutManager pTicketStatutManager);
 }

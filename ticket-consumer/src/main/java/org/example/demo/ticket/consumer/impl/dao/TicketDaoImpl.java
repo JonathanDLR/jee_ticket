@@ -39,18 +39,6 @@ public class TicketDaoImpl extends AbstractDaoImpl implements TicketDao {
 	}
 	
 	@Override
-	public List<TicketStatut> getListStatut() {
-		String vSql = "SELECT * FROM public.statut";
-		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-		
-		RowMapper<TicketStatut> vRowMapper = new TicketStatutRowMapper();
-		
-		List<TicketStatut> vListStatut = vJdbcTemplate.query(vSql, vRowMapper);
-		
-		return vListStatut;
-	}
-	
-	@Override
 	public void updateTicketStatut(TicketStatut pTicketStatut) {
 		String vSql = "UPDATE statut SET libelle = :libelle WHERE id = :id";
 		

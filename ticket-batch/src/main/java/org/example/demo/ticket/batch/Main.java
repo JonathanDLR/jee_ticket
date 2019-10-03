@@ -24,7 +24,11 @@ public class Main {
 
     /** Logger pour la classe */
     private static final Log LOGGER = LogFactory.getLog(Main.class);
-
+    private static String path;
+    
+    public static void setPath(String pPath) {
+    	path = pPath;
+    }
 
     /**
      * The entry point of application.
@@ -35,9 +39,7 @@ public class Main {
     @SuppressWarnings("resource")
 	public static void main(String[] pArgs) throws TechnicalException {
     	ApplicationContext vApplicationContext = new ClassPathXmlApplicationContext("classpath:/bootstrapContext.xml");
-    	// Properties exportTicketPath = (Properties) vApplicationContext.getBean("exportTicketPath");
-    	//String path = exportTicketPath.getProperty("path");
-    	String path ="${config.exportpath}";
+    	
         ManagerFactory vManagerFactory = vApplicationContext.getBean("managerFactory", ManagerFactory.class);
     	
     	try {
@@ -48,8 +50,9 @@ public class Main {
             String vTraitementId = pArgs[0];
             if ("ExportTicketStatus".equals(vTraitementId)) {
                 LOGGER.info("Execution du traitement : ExportTicketStatus");
-                // ...
-                List<TicketStatut> vList = vManagerFactory.getTicketManager().getListTicketStatus();
+                
+                List<TicketStatut> vList = vManagerFactory.getTicketStatutManager().getListTicketStatut();
+                
                 PrintWriter writer = new PrintWriter(path.concat("/ticket-statut.txt"));
                 for (TicketStatut ticketStatut: vList) {
                 	writer.println(ticketStatut.toString());

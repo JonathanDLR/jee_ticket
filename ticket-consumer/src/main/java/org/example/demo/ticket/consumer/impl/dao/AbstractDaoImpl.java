@@ -9,11 +9,11 @@ public class AbstractDaoImpl {
 	@Named("dataSourceTicket")
 	private DataSource dataSource;
 	
-	protected DataSource getDataSource() {
-		return dataSource;
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
 	}
 
-	public void setDatasource(DataSource datasource) {
-        this.dataSource = datasource;
-    }
+	protected DataSource getDataSource() {
+		return dataSource;
+	}	
 }
